@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article Ranking</title>
+    <link rel="stylesheet" href="article-styles.css">
+</head>
+<body>
+<script>
+    function post_ranking() {
+
+        var http = new XMLHttpRequest();
+
+        var rk1 = document.getElementById("article1_ranking").value;
+        var rk2 = document.getElementById("article2_ranking").value;
+        var rk3 = document.getElementById("article3_ranking").value;
+        var rk4 = document.getElementById("article4_ranking").value;
+        var rk5 = document.getElementById("article5_ranking").value;
+
+        var params = "rank1="+rk1+"&rank2="+rk2+"&rank3="+rk3+"&rank4="+rk4+"&rank5="+rk5;
+
+        http.open("POST", "ranking.php", true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        http.onreadystatechange = function() {
+            if(http.readyState === 4 && http.status === 200) {
+                document.getElementById("status").innerHTML = http.responseText;
+            }
+        };
+
+        http.send(params);
+    }
+</script>
+<h1>Article Ranking</h1>
+
+Article 1
+<select id="article1_ranking">
+    <option value="1" selected>1 star</option>
+    <option value="2">2 stars</option>
+    <option value="3">3 stars</option>
+    <option value="4">4 stars</option>
+    <option value="5">5 stars</option>
+</select> <br><br>
+
+Article 2
+<select id="article2_ranking">
+    <option value="1" selected>1 star</option>
+    <option value="2">2 stars</option>
+    <option value="3">3 stars</option>
+    <option value="4">4 stars</option>
+    <option value="5">5 stars</option>
+</select> <br><br>
+
+Article 3
+<select id="article3_ranking">
+    <option value="1" selected>1 star</option>
+    <option value="2">2 stars</option>
+    <option value="3">3 stars</option>
+    <option value="4">4 stars</option>
+    <option value="5">5 stars</option>
+</select> <br><br>
+
+Article 4
+<select id="article4_ranking">
+    <option value="1" selected>1 star</option>
+    <option value="2">2 stars</option>
+    <option value="3">3 stars</option>
+    <option value="4">4 stars</option>
+    <option value="5">5 stars</option>
+</select> <br><br>
+
+Article 5
+<select id="article5_ranking">
+    <option value="1" selected>1 star</option>
+    <option value="2">2 stars</option>
+    <option value="3">3 stars</option>
+    <option value="4">4 stars</option>
+    <option value="5">5 stars</option>
+</select> <br><br>
+
+<button onclick="post_ranking();">Submit</button><br><br>
+<div id="status"></div>
+</body>
+</html>

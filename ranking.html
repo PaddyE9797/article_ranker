@@ -24,7 +24,14 @@
 
         http.onreadystatechange = function() {
             if(http.readyState === 4 && http.status === 200) {
-                document.getElementById("status").innerHTML = http.responseText;
+                var rankingDiv = document.getElementById("ranking_div");
+                var reloadButton = document.createElement("button");
+                var value = document.createTextNode("Rank Again");
+
+                rankingDiv.innerHTML = http.responseText;
+                reloadButton.setAttribute("onclick", "location.href='ranking.html';");
+                reloadButton.appendChild(value);
+                rankingDiv.appendChild(reloadButton);
             }
         };
 
@@ -33,52 +40,56 @@
 </script>
 <h1>Article Ranking</h1>
 
-Article 1
-<select id="article1_ranking">
-    <option value="1" selected>1 star</option>
-    <option value="2">2 stars</option>
-    <option value="3">3 stars</option>
-    <option value="4">4 stars</option>
-    <option value="5">5 stars</option>
-</select> <br><br>
 
-Article 2
-<select id="article2_ranking">
-    <option value="1" selected>1 star</option>
-    <option value="2">2 stars</option>
-    <option value="3">3 stars</option>
-    <option value="4">4 stars</option>
-    <option value="5">5 stars</option>
-</select> <br><br>
+<div id="ranking_div">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    <select id="article1_ranking">
+        <option value="1" selected>1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+    </select> <br><br>
 
-Article 3
-<select id="article3_ranking">
-    <option value="1" selected>1 star</option>
-    <option value="2">2 stars</option>
-    <option value="3">3 stars</option>
-    <option value="4">4 stars</option>
-    <option value="5">5 stars</option>
-</select> <br><br>
+    Praesent bibendum nec velit a fringilla. Nulla facilisi
+    <select id="article2_ranking">
+        <option value="1" selected>1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+    </select> <br><br>
 
-Article 4
-<select id="article4_ranking">
-    <option value="1" selected>1 star</option>
-    <option value="2">2 stars</option>
-    <option value="3">3 stars</option>
-    <option value="4">4 stars</option>
-    <option value="5">5 stars</option>
-</select> <br><br>
+    Vestibulum posuere orci ullamcorper nisi porta, sit amet tempus nibh porta
+    <select id="article3_ranking">
+        <option value="1" selected>1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+    </select> <br><br>
 
-Article 5
-<select id="article5_ranking">
-    <option value="1" selected>1 star</option>
-    <option value="2">2 stars</option>
-    <option value="3">3 stars</option>
-    <option value="4">4 stars</option>
-    <option value="5">5 stars</option>
-</select> <br><br>
+    Maecenas venenatis lorem ut erat dictum, sed varius est porta
+    <select id="article4_ranking">
+        <option value="1" selected>1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+    </select> <br><br>
 
-<button onclick="post_ranking();">Submit</button><br><br>
-<div id="status"></div>
+    Nulla nibh erat, pharetra at ultricies nec, tincidunt luctus arcu
+    <select id="article5_ranking">
+        <option value="1" selected>1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+    </select> <br><br>
+
+    <button onclick="post_ranking();">Submit</button><br><br>
+</div>
+<a href="page5.html">Previous Page</a>
+<a href="index.html">Go to First Page</a>
 </body>
 </html>

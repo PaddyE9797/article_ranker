@@ -36,8 +36,16 @@
                 }
                 else if(objJSON.body[i].type === "list") {
 
-                    for(var j in objJSON.body[i].model["items"]) {
-                        document.getElementById("article").innerHTML += "<li>"+objJSON.body[i].model["items"][j]+"</li>";
+                    if(objJSON.body[i].model["type"] === "unordered") {
+                        var ul = document.createElement("ul");
+                        document.getElementById("article").appendChild(ul);
+
+                        for(var j in objJSON.body[i].model["items"]) {
+                            var li = document.createElement('li');
+                            ul.appendChild(li);
+
+                            li.innerHTML += objJSON.body[i].model["items"][j];
+                        }
                     }
                 }
             }

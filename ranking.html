@@ -32,6 +32,7 @@
                 reloadButton.setAttribute("onclick", "location.href='ranking.html';");
                 reloadButton.appendChild(value);
                 rankingDiv.appendChild(reloadButton);
+                rankingDiv.innerHTML += "<br><br>";
             }
         };
 
@@ -89,7 +90,10 @@
 
     <button onclick="post_ranking();">Submit</button><br><br>
 </div>
-<a href="page5.html">Previous Page</a>
-<a href="index.html">Go to First Page</a>
+
+<div class="links">
+    <a class="prev" href="page5.html">Previous Page</a>
+    <a id="first" href="index.html">Go to First Page</a>
+</div>
 </body>
 </html>

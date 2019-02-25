@@ -21,7 +21,7 @@ h1 {
 }
 
 p {
-    font-family: sans-serif;
+    font-family: serif;
     font-size: 120%;
     width: 100%;
     color: black;
@@ -29,7 +29,7 @@ p {
 }
 
 li {
-    font-family: sans-serif;
+    font-family: serif;
     font-size: 100%;
     width: 100%;
     color: black;
@@ -50,6 +50,7 @@ img {
 .next {
     font-family: sans-serif;
     display: inline-block;
+    font-size: 180%;
     color: black;
     float: right;
     text-align: center;
@@ -59,13 +60,14 @@ img {
 }
 
 .next:hover {
-    background-color: lightgray;
+    background-color: black;
     color: white;
 }
 
 .prev {
     font-family: sans-serif;
     display: inline-block;
+    font-size: 180%;
     color: black;
     float: left;
     text-align: center;
@@ -75,13 +77,14 @@ img {
 }
 
 .prev:hover {
-    background-color: lightgray;
+    background-color: black;
     color: white;
 }
 
 #first {
     font-family: sans-serif;
     display: inline-block;
+    font-size: 180%;
     color: black;
     float: right;
     text-align: center;
@@ -91,7 +94,7 @@ img {
 }
 
 #first:hover {
-    background-color: lightgray;
+    background-color: black;
     color: white;
 }
 

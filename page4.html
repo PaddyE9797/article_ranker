@@ -23,7 +23,8 @@
         return xhr;
     }
 
-    var http = createCORSRequest("GET", "articles/article-4.json");
+    //var http = createCORSRequest("GET", "articles/article-4.json");
+    var http = createCORSRequest("GET", "get-articles/article-4.php");
 
     if(http) {
         http.onreadystatechange = function () {

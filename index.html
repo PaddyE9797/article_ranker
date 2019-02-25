@@ -7,55 +7,82 @@
 </head>
 <body>
 <script>
-    var http = new XMLHttpRequest();
-    http.open("GET", "articles/article-1.json");
+    function createCORSRequest(method, url){
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+            xhr.open(method, url, true);
+        }
+        else if (typeof XDomainRequest !== "undefined") {
+            xhr = new XDomainRequest();
+            xhr.open(method, url);
+        }
+        else {
+            xhr = null;
+        }
+        return xhr;
+    }
 
-    // Track the state changes of the request.
-    http.onreadystatechange = function () {
-        var DONE = 4, OK = 200;
+    var http = createCORSRequest("GET", "articles/article-1.json");
 
-        if (http.readyState === DONE && http.status === OK) {
-            var objJSON = JSON.parse(http.responseText);
-            document.getElementById("title").innerHTML = objJSON.title;
+    if(http) {
+        http.onreadystatechange = function () {
+            var DONE = 4, OK = 200;
 
-            for(var i = 0; i < objJSON.body.length; i++) {
+            if (http.readyState === DONE && http.status === OK) {
+                var objJSON = JSON.parse(http.responseText);
+                document.getElementById("title").innerHTML = objJSON.title;
 
-                if(objJSON.body[i].type === "heading") {
-                    document.getElementById("article").innerHTML += "<h1>"+objJSON.body[i].model["text"]+"</h1>";
-                }
-                else if(objJSON.body[i].type === "paragraph") {
-                    document.getElementById("article").innerHTML += "<p>"+objJSON.body[i].model["text"]+"</p>";
-                }
-                else if(objJSON.body[i].type === "image") {
-                    var image = document.createElement("img");
-                    image.setAttribute("src", objJSON.body[i].model["url"]);
-                    image.setAttribute("width", objJSON.body[i].model["width"]);
-                    image.setAttribute("height", objJSON.body[i].model["height"]);
-                    image.setAttribute("alt", objJSON.body[i].model["altTag"]);
-                    document.getElementById("article").appendChild(image);
-                }
-                else if(objJSON.body[i].type === "list") {
+                for(var i = 0; i < objJSON.body.length; i++) {
 
-                    if(objJSON.body[i].model["type"] === "unordered") {
-                        var ul = document.createElement("ul");
-                        document.getElementById("article").appendChild(ul);
+                    if(objJSON.body[i].type === "heading") {
+                        document.getElementById("article").innerHTML += "<h1>"+objJSON.body[i].model["text"]+"</h1>";
+                    }
+                    else if(objJSON.body[i].type === "paragraph") {
+                        document.getElementById("article").innerHTML += "<p>"+objJSON.body[i].model["text"]+"</p>";
+                    }
+                    else if(objJSON.body[i].type === "image") {
+                        var image = document.createElement("img");
+                        image.setAttribute("src", objJSON.body[i].model["url"]);
+                        image.setAttribute("width", objJSON.body[i].model["width"]);
+                        image.setAttribute("height", objJSON.body[i].model["height"]);
+                        image.setAttribute("alt", objJSON.body[i].model["altTag"]);
+                        document.getElementById("article").appendChild(image);
+                    }
+                    else if(objJSON.body[i].type === "list") {
 
-                        for(var j in objJSON.body[i].model["items"]) {
-                            var li = document.createElement('li');
-                            ul.appendChild(li);
+                        if(objJSON.body[i].model["type"] === "unordered") {
+                            var ul = document.createElement("ul");
+                            document.getElementById("article").appendChild(ul);
 
-                            li.innerHTML += objJSON.body[i].model["items"][j];
+                            for(var j in objJSON.body[i].model["items"]) {
+                                var li = document.createElement('li');
+                                ul.appendChild(li);
+
+                                li.innerHTML += objJSON.body[i].model["items"][j];
+                            }
                         }
                     }
                 }
             }
+        };
+    }
+    else {
+        alert("Error: CORS not supported!");
+    }
+
+    http.onerror = function() {
+        if (http.readyState === 4) {
+            alert("Error: " + http.status + ", " + http.statusText)
+        }
+        else {
+            alert("Error: Something has went wrong!");
         }
     };
-    // Send the request to articles/article-1.json
     http.send();
 </script>
 
-<div id="article"></div>
+<div id="article">
+</div>
 
 <div class="links">
     <a class="next" href="page2.html">Next Page</a>

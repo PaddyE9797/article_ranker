@@ -24,11 +24,14 @@
 
         http.onreadystatechange = function() {
             if(http.readyState === 4 && http.status === 200) {
-                var rankingDiv = document.getElementById("ranking_div");
+                var rankingDiv = document.getElementById("ranking");
                 var reloadButton = document.createElement("button");
                 var value = document.createTextNode("Rank Again");
 
-                rankingDiv.innerHTML = http.responseText;
+                rankingDiv.innerHTML = "<h1>Article Ranking</h1>";
+
+                rankingDiv.innerHTML += http.responseText;
+                reloadButton.setAttribute("id", "reload_button");
                 reloadButton.setAttribute("onclick", "location.href='ranking.html';");
                 reloadButton.appendChild(value);
                 rankingDiv.appendChild(reloadButton);
@@ -39,10 +42,10 @@
         http.send(params);
     }
 </script>
-<h1>Article Ranking</h1>
 
+<div id="ranking">
+    <h1>Article Ranking</h1>
 
-<div id="ranking_div">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit
     <select id="article1_ranking">
         <option value="1" selected>1 star</option>
@@ -88,7 +91,7 @@
         <option value="5">5 stars</option>
     </select> <br><br>
 
-    <button onclick="post_ranking();">Submit</button><br><br>
+    <button id="post_ranking" onclick="post_ranking();">Submit</button><br><br>
 </div>
 
 <div class="links">

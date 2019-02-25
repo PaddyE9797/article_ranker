@@ -106,7 +106,8 @@ img {
     background-color: white;
     margin-left: 10%;
     margin-right: 10%;
-    padding: 1%
+    padding: 1%;
+    padding-bottom: 2%;
 }
 
 #post_ranking, #reload_button {
@@ -136,6 +137,6 @@ img {
 }
 
 .article_rankings {
-    font-size: 160%;
+    font-size: 120%;
     padding: 1% 1%;
 }

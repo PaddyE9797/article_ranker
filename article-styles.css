@@ -112,6 +112,7 @@ img {
 #post_ranking, #reload_button {
     font-family: sans-serif;
     display: inline-block;
+    font-size: 180%;
     color: white;
     background-color: black;
     border-color: black;
@@ -132,4 +133,9 @@ img {
     background-color: #333;
     border-color: #333;
     color: white;
+}
+
+.article_rankings {
+    font-size: 160%;
+    padding: 1% 1%;
 }
